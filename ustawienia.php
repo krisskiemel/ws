@@ -9,8 +9,6 @@
             $kolory = "dark";
         }
     }
-
-
 ?>
 <?php include "db_conn.php";?>
 <html>

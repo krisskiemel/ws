@@ -20,7 +20,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="ustawienia.php">Ustawienia</a>
                         </li>
-
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="nav-link" href="#"><span class="glyphicon glyphicon-user"></span> Zarejestruj się</a></li>
