@@ -18,7 +18,7 @@
         
     <body>
         <?php include "menu.php";
-        if (!isset('typ')) {?>
+        if (!isset($_REQUEST['typ'])) {?>
             <div class="container-fluid">
                 <form action="rejestracja.php" method="get">
                     <input type="hidden" name="typ" value="insert">
@@ -50,11 +50,29 @@
             $password = md5($_REQUEST['password']);
             $password2 = md5($_REQUEST['password2']);
             if ($password == $password2) {
-                
+                $sql_log = "SELECT * FROM uzytkownicy WHERE login='$login'";
+                $result_log = $conn->query($sql_log);
+                if ($row_log = $result_log->fetch_assoc()) {
+                    header('Refresh:3 ; URL=rejestracja.php');?>
+                    <div class="container-fluid">
+                        <div class="mb-3 mt-3">
+                            <p>Login: <b><?php $login?></b> istnieje już w bazie użytkowników</p>
+                        </div>
+                    </div>
+                <?php
+                } else {
+                    header('Refresh:3 ; URL=rejestracja.php');
+                    $sql_ins = "";?>
+                    <div class="container-fluid">
+                        <div class="mb-3 mt-3">
+                            <p>Login: <b><?php $login?></b> istnieje już w bazie użytkowników</p>
+                        </div>
+                    </div>
+                }
             }
 
         }    
-
+?>
     </body>
 
 </html>
