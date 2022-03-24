@@ -62,15 +62,17 @@
                 <?php
                 } else {
                     header('Refresh:3 ; URL=rejestracja.php');
-                    $sql_ins = "";?>
+                    $sql_ins = "INSERT INTO uzytkownicy (login, password, nazwisko)
+                                VALUES ('$login', '$password', '$nazwisko')";
+                    $result_ins = $conn->query($sql_ins);?>
                     <div class="container-fluid">
                         <div class="mb-3 mt-3">
-                            <p>Login: <b><?php $login?></b> istnieje już w bazie użytkowników</p>
+                            <p>Dodano użytkownika: <b><?php $nazwisko?></b><br>Login: <b><?php $login?></b>.</p>
                         </div>
                     </div>
+                <?php    
                 }
             }
-
         }    
 ?>
     </body>
