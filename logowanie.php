@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if (isset($_COOKIE['kolory'])) {
         $kolory = $_COOKIE['kolory'];
     } else {
@@ -43,11 +44,18 @@
             $result_log = $conn->query($sql_log);
             if ($row_log = $result_log->fetch_assoc()) {
                 if ($password == $row_log['password']) {
+                    header('Refresh:3 ; URL=index.php');
+                    $_SESSION['user'] = $login;
+				    $_SESSION['pass'] = $password;
                     echo "<p>Zalogowano</p>";
                 } else {
+                    unset($_SESSION["user"]);
+                    unset($_SESSION["pass"]);
                     echo "<p>Nieprawidłowe hasło: $password " . $row_log['password'] . "</p>";
                 }
             } else {
+                unset($_SESSION["user"]);
+                unset($_SESSION["pass"]);
                 echo "<p>Nieprawidłowy login</p>";
             }
         }    

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['user']) && isset($_SESSION['pass'])) {
+    $zalogowany = true;
+} else {
+    $zalogowany = false;
+}
+?>
         <nav class="navbar navbar-expand-sm navbar-dark bg-<?php echo $kolory?>">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php">
@@ -21,10 +29,20 @@
                             <a class="nav-link" href="ustawienia.php">Ustawienia</a>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a class="nav-link" href="rejestracja.php"></span> Zarejestruj się</a></li>
-                        <li><a class="nav-link" href="logowanie.php"></span> Zaloguj</a></li>
-                    </ul>
+                    <?php
+                    if (!$zalogowany) {?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a class="nav-link" href="rejestracja.php"></span> Zarejestruj się</a></li>
+                            <li><a class="nav-link" href="logowanie.php"></span> Zaloguj</a></li>
+                        </ul>
+                    <?php    
+                    } else {?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>Zalogowany</li>
+                        </ul>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </nav>
