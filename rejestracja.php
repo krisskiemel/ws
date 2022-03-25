@@ -67,11 +67,23 @@
                     $result_ins = $conn->query($sql_ins);?>
                     <div class="container-fluid">
                         <div class="mb-3 mt-3">
-                            <p>Dodano użytkownika: <b><?php $nazwisko?></b><br>Login: <b><?php $login?></b>.</p>
+                            <p>Dodano użytkownika: <b><?php echo $nazwisko?></b><br>Login: <b><?php echo $login?></b>.</p>
                         </div>
                     </div>
                 <?php    
                 }
+            } else {
+                $previous = "javascript:history.go(-1)";
+                if(isset($_SERVER['HTTP_REFERER'])) {
+                    $previous = $_SERVER['HTTP_REFERER'];
+                }
+                header('Refresh:3 ; URL=rejestracja.php');?>
+                <div class="container-fluid">
+                    <div class="mb-3 mt-3">
+                        <p>Niepoprawnie powtórzone hasło.</p>
+                    </div>
+                </div>
+            <?php        
             }
         }    
 ?>
