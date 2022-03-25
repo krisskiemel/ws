@@ -16,7 +16,7 @@
         <title>Wypożyczalnia samochodów - rejestracja</title>
     </head>    
         
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <?php include "menu.php";
         if (!isset($_REQUEST['typ'])) {?>
             <div class="container-fluid">
@@ -87,6 +87,7 @@
             }
         }    
 ?>
+        <footer class="mt-auto bg-<?php echo $kolory;?>">TEST</footer>
     </body>
 
 </html>
