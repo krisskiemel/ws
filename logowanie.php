@@ -51,7 +51,7 @@
                 } else {
                     unset($_SESSION["user"]);
                     unset($_SESSION["pass"]);
-                    echo "<p>Nieprawidłowe hasło: $password " . $row_log['password'] . "</p>";
+                    echo "<p>Nieprawidłowe hasło dla użytkownika: $login</p>";
                 }
             } else {
                 unset($_SESSION["user"]);
