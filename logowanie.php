@@ -40,22 +40,25 @@
         } else {
             $login = $_REQUEST['login'];
             $password = md5($_REQUEST['password']);
-            $sql_log = "SELECT password FROM uzytkownicy WHERE login='$login'";
+            $sql_log = "SELECT nazwisko, password FROM uzytkownicy WHERE login='$login'";
             $result_log = $conn->query($sql_log);
             if ($row_log = $result_log->fetch_assoc()) {
                 if ($password == $row_log['password']) {
                     header('Refresh:3 ; URL=index.php');
                     $_SESSION['user'] = $login;
 				    $_SESSION['pass'] = $password;
+                    $_SESSION['name'] = $row_log['nazwisko'];
                     echo "<p>Zalogowano</p>";
                 } else {
                     unset($_SESSION["user"]);
                     unset($_SESSION["pass"]);
+                    unset($_SESSION["name"]);
                     echo "<p>Nieprawidłowe hasło dla użytkownika: $login</p>";
                 }
             } else {
                 unset($_SESSION["user"]);
                 unset($_SESSION["pass"]);
+                unset($_SESSION["name"]);
                 echo "<p>Nieprawidłowy login</p>";
             }
         }    
